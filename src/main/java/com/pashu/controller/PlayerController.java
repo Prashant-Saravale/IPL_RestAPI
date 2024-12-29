@@ -36,7 +36,33 @@ public class PlayerController {
 		return service.getAllPlayer();
 
 	}
-	
 
+	@GetMapping("/api/player/{id}")
+
+	public Object getPlayerById(@PathVariable int id) {
+		Player player = service.getPlayerById(id);
+
+		if (player != null) {
+			return player;
+
+		} else {
+			return " Player not found..";
+		}
+	}
+
+	@DeleteMapping("/api/player/delete")
+
+	public String deletePlayerById(@RequestParam int id) {
+
+		return service.deletePlayerById(id);
+
+	}
+
+	@PutMapping("/api/update/{id}")
+
+	public String updatePlayerById(@PathVariable int id, @RequestBody Player player) {
+		return  service.updatePlayerById(id, player);
+
+	}
 
 }
